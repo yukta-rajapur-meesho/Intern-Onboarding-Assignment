@@ -51,7 +51,7 @@ Use the provided script:
 ```json
 {
   "status": "SUCCESS",
-  "SMS processed"
+  "message":"SMS processed"
 }
 ```
 ---
@@ -89,4 +89,3 @@ curl http://localhost:9092/v1/user/123/messages
   * Produced by: SMS Sender (Java)
   * Consumed by: SMS Store (Go)
 
----
