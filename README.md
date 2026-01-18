@@ -22,17 +22,13 @@ The system uses **Kafka** for event-driven communication, **Redis** for user blo
 
 ## Starting the Application (Local)
 
-### 1️⃣ Start All Services
+### Start All Services
 
 Use the provided script:
 
 ```bash
 ./start.sh
 ```
----
-
-## Service Details & API Endpoints
-
 ---
 
 ## Service 1: SMS Sender (Java / Spring Boot)
