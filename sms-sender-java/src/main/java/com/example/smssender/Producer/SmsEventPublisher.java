@@ -1,4 +1,4 @@
-package com.example.smssender.Kafka;
+package com.example.smssender.Producer;
 
 import com.example.smssender.Model.SmsEvent;
 

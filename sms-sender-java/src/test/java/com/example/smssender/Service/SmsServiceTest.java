@@ -1,8 +1,9 @@
 package com.example.smssender.Service;
 
-import com.example.smssender.Kafka.SmsEventPublisher;
 import com.example.smssender.Model.SmsEvent;
 import com.example.smssender.Model.SmsRequest;
+import com.example.smssender.Producer.SmsEventPublisher;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

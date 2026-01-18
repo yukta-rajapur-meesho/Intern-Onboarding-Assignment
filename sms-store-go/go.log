@@ -1,0 +1,12 @@
+2026/01/18 18:12:37 MongoDB connected
+2026/01/18 18:12:37 SMS Store running on :8081
+2026/01/18 18:12:37 Kafka consumer started
+RAW KAFKA MESSAGE: {"phoneNumber":"1234567890","message":"Hello","status":"SUCCESS"}
+Saving message to Mongo: {1234567890 Hello SUCCESS}
+Mongo insert successful
+RAW KAFKA MESSAGE: {"phoneNumber":"1","message":"Hello","status":"SUCCESS"}
+Saving message to Mongo: {1 Hello SUCCESS}
+Mongo insert successful
+2026/01/18 18:19:15 Kafka read error: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connect: connection refused
+2026/01/18 18:19:16 Kafka read error: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connect: connection refused
+2026/01/18 18:19:26 Kafka read error: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connect: connection refused

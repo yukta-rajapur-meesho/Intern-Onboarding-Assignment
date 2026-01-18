@@ -1,8 +1,9 @@
 package com.example.smssender.Service;
 
-import com.example.smssender.Kafka.SmsEventPublisher;
 import com.example.smssender.Model.SmsEvent;
 import com.example.smssender.Model.SmsRequest;
+import com.example.smssender.Producer.SmsEventPublisher;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
