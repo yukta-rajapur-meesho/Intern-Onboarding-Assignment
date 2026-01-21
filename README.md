@@ -22,17 +22,13 @@ The system uses **Kafka** for event-driven communication, **Redis** for user blo
 
 ## Starting the Application (Local)
 
-### 1️⃣ Start All Services
+### Start All Services
 
 Use the provided script:
 
 ```bash
 ./start.sh
 ```
----
-
-## Service Details & API Endpoints
-
 ---
 
 ## Service 1: SMS Sender (Java / Spring Boot)
@@ -55,7 +51,7 @@ Use the provided script:
 ```json
 {
   "status": "SUCCESS",
-  "SMS processed"
+  "message":"SMS processed"
 }
 ```
 ---
@@ -93,4 +89,3 @@ curl http://localhost:9092/v1/user/123/messages
   * Produced by: SMS Sender (Java)
   * Consumed by: SMS Store (Go)
 
----
