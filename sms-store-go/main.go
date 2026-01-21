@@ -18,6 +18,7 @@ func main() {
 
 	// HTTP server
 	http.HandleFunc("/v1/user/", handler.GetMessages)
+
 	// Kafka consumer
 	go consumer.ConsumeMessages()
 

@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+var findByUser = repository.FindByUser
+
 func GetMessages(w http.ResponseWriter, r *http.Request) { //w used to write to response, r contains request data
 
 	// sanity check for only GET requests
@@ -17,7 +19,7 @@ func GetMessages(w http.ResponseWriter, r *http.Request) { //w used to write to 
 	}
 
 	parts := strings.Split(r.URL.Path, "/")
-	if len(parts) < 4 {
+	if len(parts) != 5 {
 		http.Error(w, "Invalid URL", http.StatusBadRequest)
 		return
 	}
@@ -25,7 +27,7 @@ func GetMessages(w http.ResponseWriter, r *http.Request) { //w used to write to 
 	phonenumber, api := parts[3], parts[4]
 
 	if api == "messages" {
-		messages, err := repository.FindByUser(phonenumber)
+		messages, err := findByUser(phonenumber)
 		if err != nil {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 			return

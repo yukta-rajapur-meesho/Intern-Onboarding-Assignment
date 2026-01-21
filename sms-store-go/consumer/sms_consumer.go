@@ -3,7 +3,6 @@ package consumer
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 
 	"sms-store/model"
@@ -34,8 +33,6 @@ func ConsumeMessages() {
 
 func handleKafkaMessage(data []byte) {
 	var message model.Sms
-
-	fmt.Println("RAW KAFKA MESSAGE:", string(data))
 
 	if err := json.Unmarshal(data, &message); err != nil {
 		log.Println("Invalid JSON:", err)
