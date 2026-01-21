@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"bytes"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"sms-store/model"
@@ -58,7 +58,7 @@ func TestSmsHandler_InvalidURL_3(t *testing.T) {
 	}
 }
 
-func TestGetMessages_Success(t *testing.T) {
+func TestSmsHandler_Success(t *testing.T) {
 	// mock repository
 	findByUser = func(phoneNumber string) ([]model.Sms, error) {
 		return []model.Sms{
@@ -76,14 +76,28 @@ func TestGetMessages_Success(t *testing.T) {
 		t.Fatalf("expected 200, got %d", rr.Code)
 	}
 
-	var body []map[string]string
-	// This decodes the JSON response body from the HTTP test recorder into the 'body' variable,
-	// reporting an error if the response is not valid JSON.
-	if err := json.NewDecoder(bytes.NewBuffer(rr.Body.Bytes())).Decode(&body); err != nil {
-		t.Fatalf("invalid JSON response")
+	var body []model.Sms
+	if err := json.Unmarshal(rr.Body.Bytes(), &body); err != nil {
+		t.Fatalf("invalid JSON response: %v", err)
 	}
 
-	if body[0]["message"] != "hello" {
+	if len(body) == 0 || body[0].Message != "hello" {
 		t.Fatalf("unexpected response body")
+	}
+}
+
+func TestSmsHandler_RepositoryError(t *testing.T) {
+	findByUser = func(phoneNumber string) ([]model.Sms, error) {
+		return nil, errors.New("db down")
+	}
+	defer func() { findByUser = repository.FindByUser }()
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/user/123/messages", nil)
+	rr := httptest.NewRecorder()
+
+	GetMessages(rr, req)
+
+	if rr.Code != http.StatusInternalServerError {
+		t.Fatalf("expected 500, got %d", rr.Code)
 	}
 }
