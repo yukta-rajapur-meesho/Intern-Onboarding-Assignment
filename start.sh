@@ -23,7 +23,7 @@ echo "Starting apps..."
 
 (
   cd ~/Documents/Onboarding/Intern-Assignment/sms-store-go
-  go run main.go > go.log 2>&1 &
+  go run main.go 
 )
 
 echo "Done"
