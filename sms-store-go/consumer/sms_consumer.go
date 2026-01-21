@@ -11,6 +11,8 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
+var saveMessage = repository.SaveMessage
+
 func ConsumeMessages() {
 	log.Println("Kafka consumer started")
 
@@ -39,7 +41,7 @@ func handleKafkaMessage(data []byte) {
 		return
 	}
 
-	if err := repository.SaveMessage(message); err != nil {
+	if err := saveMessage(message); err != nil {
 		log.Println("DB error:", err)
 	}
 }
