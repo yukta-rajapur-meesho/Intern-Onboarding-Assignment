@@ -86,9 +86,4 @@ class SmsServiceTest {
                 argThat(event -> event.getStatus().equals("PROVIDER_ERROR")));
     }
 
-    // @Test
-    // void sanityCheck() {
-    //     fail("If you see this, tests are running");
-    // }
-
 }
