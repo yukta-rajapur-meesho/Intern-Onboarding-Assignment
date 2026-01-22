@@ -52,7 +52,7 @@ public class SmsService {
 
     boolean isBlocked(String phoneNumber) {
         try {
-            return Boolean.TRUE.equals(redisTemplate.hasKey(phoneNumber));
+            return redisTemplate.hasKey(phoneNumber);
         } catch (Exception e) {
             // Fail open: do not block SMS just because Redis is down
             logger.log(

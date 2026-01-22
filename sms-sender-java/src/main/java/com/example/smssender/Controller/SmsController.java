@@ -2,6 +2,9 @@ package com.example.smssender.Controller;
 
 import com.example.smssender.Model.SmsRequest;
 import com.example.smssender.Service.SmsService;
+
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +22,7 @@ public class SmsController {
     }
 
     @PostMapping("/send")
-    public ResponseEntity<String> sendSms(@RequestBody SmsRequest request) { //look at http body and convert to this object
+    public ResponseEntity<String> sendSms(@Valid @RequestBody SmsRequest request) { //look at http body and convert to this object
         smsService.sendSms(request);
         return ResponseEntity.ok("SMS processed"); //200 ok - success with data
     }
