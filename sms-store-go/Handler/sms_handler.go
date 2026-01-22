@@ -37,8 +37,7 @@ func GetMessages(w http.ResponseWriter, r *http.Request) { //w used to write to 
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(messages)
 	} else {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Invalid API"))
+		http.Error(w, "Invalid URL", http.StatusBadRequest)
 		return
 	}
 }

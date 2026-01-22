@@ -24,7 +24,6 @@ func TestSmsHandler_MethodNotAllowed(t *testing.T) {
 func TestSmsHandler_InvalidURL_1(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/v1/user", nil)
 	rr := httptest.NewRecorder()
-
 	GetMessages(rr, req)
 
 	if rr.Code != http.StatusBadRequest {
@@ -49,12 +48,8 @@ func TestSmsHandler_InvalidURL_3(t *testing.T) {
 
 	GetMessages(rr, req)
 
-	if rr.Code != http.StatusOK {
-		t.Fatalf("expected 200, got %d", rr.Code)
-	}
-
-	if rr.Body.String() != "Invalid API" {
-		t.Fatalf("unexpected response body")
+	if rr.Code != http.StatusBadRequest {
+		t.Fatalf("expected 400, got %d", rr.Code)
 	}
 }
 
@@ -65,8 +60,6 @@ func TestSmsHandler_Success(t *testing.T) {
 			{PhoneNumber: "123", Message: "hello"},
 		}, nil
 	}
-	defer func() { findByUser = repository.FindByUser }()
-
 	req := httptest.NewRequest(http.MethodGet, "/v1/user/123/messages", nil)
 	rr := httptest.NewRecorder()
 

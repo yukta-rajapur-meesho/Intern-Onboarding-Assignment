@@ -13,9 +13,8 @@ import (
 )
 
 var Collection *mongo.Collection
-var Client *mongo.Client
 
-func Init(uri string) error {
+func Init(uri string, dbName string, collectionName string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -24,8 +23,7 @@ func Init(uri string) error {
 		return err
 	}
 
-	Client = client
-	Collection = client.Database("sms_store").Collection("messages")
+	Collection = client.Database(dbName).Collection(collectionName)
 
 	log.Println("MongoDB connected")
 	return nil
