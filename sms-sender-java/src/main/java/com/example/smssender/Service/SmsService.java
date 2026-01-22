@@ -7,6 +7,7 @@ import com.example.smssender.Producer.SmsEventPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class SmsService {
 
     private final SmsEventPublisher eventPublisher;
     private final StringRedisTemplate redisTemplate;
+
+    @Value("${sms.provider.mock.success:true}")
+    private boolean smsProviderMockSuccess;
 
     public SmsService(SmsEventPublisher eventPublisher, StringRedisTemplate redisTemplate) {
         this.eventPublisher = eventPublisher;
@@ -60,16 +64,10 @@ public class SmsService {
     }
 
     String invokeSmsProvider(SmsRequest request) {
-        try {
-            return "SUCCESS";
-        } catch (Exception e) {
-            logger.log(
-                    Level.SEVERE,
-                    "Critical failure calling SMS provider",
-                    e);
+        if (!smsProviderMockSuccess) {
             return "PROVIDER_ERROR";
-
         }
+        return "SUCCESS";
     }
 
 }
