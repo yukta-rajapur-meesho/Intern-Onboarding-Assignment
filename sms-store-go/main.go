@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"sms-store/consumer"
 	"sms-store/handler"
 	"sms-store/repository"
@@ -11,7 +12,7 @@ import (
 func main() {
 
 	// Init DB
-	err := repository.Init("mongodb://localhost:27017")
+	err := repository.Init(os.Getenv("MONGO_URI"), os.Getenv("MONGO_DB"), os.Getenv("MONGO_COLLECTION"))
 	if err != nil {
 		log.Fatal(err)
 	}
