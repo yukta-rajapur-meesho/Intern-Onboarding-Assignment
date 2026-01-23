@@ -74,8 +74,8 @@ curl http://localhost:9092/v1/user/123/messages
 [
   {
     "phoneNumber": "9876543210",
-    "message": "Hello from SMS Service",
-    "status": "SUCCESS",
+    "message": "Hello Java SMS Service",
+    "status": "SUCCESS / PROVIDER_ERROR",
   }
 ]
 ```
