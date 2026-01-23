@@ -42,7 +42,7 @@ Use the provided script:
 ```json
 {
   "phoneNumber": "9876543210",
-  "message": "Hello from SMS Service"
+  "message": "Hello Java SMS Service"
 }
 ```
 
