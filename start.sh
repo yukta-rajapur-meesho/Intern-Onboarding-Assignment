@@ -19,11 +19,12 @@ echo "Starting apps..."
 (
   cd ~/Documents/Onboarding/Intern-Assignment/sms-sender-java
   mvn spring-boot:run
-)
+) &
 
 (
   cd ~/Documents/Onboarding/Intern-Assignment/sms-store-go
-  go run main.go 
-)
+  source .env && go run .
+) &
 
-echo "Done"
+echo "Both services started in background. Press Ctrl+C to stop all."
+wait
