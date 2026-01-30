@@ -37,7 +37,7 @@ public class SmsService {
         String status = invokeSmsProvider(request);
 
         if ("PROVIDER_ERROR".equals(status)) {
-            return "Failed to send SMS due to provider error";
+            return "Failed: Due to provider error";
         }
 
         try {
@@ -49,7 +49,7 @@ public class SmsService {
                     Level.SEVERE,
                     String.format("Failed to publish SMS event to Kafka for %s", phoneNumber),
                     e);
-            return "Internal server error: cannot send SMS";
+            return "Failed: Internal server error,cannot send SMS";
         }
         return "SMS sent successfully";
 

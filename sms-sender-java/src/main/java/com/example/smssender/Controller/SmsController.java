@@ -5,6 +5,7 @@ import com.example.smssender.Service.SmsService;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,11 @@ public class SmsController {
 
     @PostMapping("/send")
     public ResponseEntity<String> sendSms(@Valid @RequestBody SmsRequest request) {
-        return ResponseEntity.ok(smsService.sendSms(request));
+        String response = smsService.sendSms(request);
+        if (response.startsWith("Failed:")) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
     }
 }
