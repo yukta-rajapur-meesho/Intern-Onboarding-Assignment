@@ -26,6 +26,11 @@ func GetMessages(w http.ResponseWriter, r *http.Request) { //w used to write to 
 
 	phonenumber, api := parts[3], parts[4]
 
+	if len(phonenumber) != 10 {
+		http.Error(w, "Invalid phone number, must be 10 digits", http.StatusBadRequest)
+		return
+	}
+
 	if api == "messages" {
 		messages, err := findByUser(phonenumber)
 		if err != nil {
