@@ -56,6 +56,31 @@ Use the provided script:
 ```
 ---
 
+### API: Block a number
+
+**POST** `/v1/sms/block/{phonenumber}`
+
+#### Response
+
+Phone number blocked successfully
+
+
+### API: Unblock a number
+
+**DELETE** `/v1/sms/block/{phonenumber}`
+
+#### Response
+
+Phone number unblocked successfully
+
+### API: View all blocked numbers
+
+**GET** `/v1/sms/block/list`
+
+#### Response
+
+<List of blocked numbers>
+
 ## Service 2: SMS Store (Go / net/http)
 
 ### API: Get SMS History
